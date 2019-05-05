@@ -4,7 +4,7 @@ const user = new mongoose.Schema(
   {
     avator: {
       type: String,
-      defalut: 'http://pbl.yaojunrong.com/FhegD5A2iKnKzJmAnCUBfbyOnkTo'
+      defalut: 'http://image.yaojunrong.com/zhenxiang.jpg'
     },
     nickname: String,
     password: String,

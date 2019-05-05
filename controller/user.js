@@ -101,4 +101,18 @@ async function login(req, res, next) {
     next(err);
   }
 }
-module.exports = { register, login };
+
+// 解密token，获取用户信息
+async function getUserData(req, res, next) {
+  try {
+    const userId = req.user.userId;
+    const userData = await userModel.findById(userId).select('-password');
+    res.json({
+      code: 200,
+      userData
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+module.exports = { register, login, getUserData };
