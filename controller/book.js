@@ -4,6 +4,7 @@ const bookModel = require('../model/book');
 const titleModel = require('../model/title');
 const articleModel = require('../model/article');
 
+//爬取整本书
 async function getBook(req, res, next) {
   try {
     const { author, img, url, title } = req.body;
@@ -57,4 +58,30 @@ async function getBook(req, res, next) {
   }
 }
 
-module.exports = { getBook };
+// 根据Id查询书籍
+async function getBookById(req, res, next) {
+  try {
+    const { id } = req.params;
+    const data = await bookModel.findById(id);
+    res.json({
+      code: 200,
+      data
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
+// 获取全部书籍
+async function getAllBooks(req, res, next) {
+  try {
+    const data = await bookModel.find();
+    res.json({
+      code: 200,
+      data
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+module.exports = { getBook, getBookById, getAllBooks };
